@@ -1,0 +1,30 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: {{ include "ferdium.fullname" . }}-data-pvc
+ namespace: {{ .Release.Namespace }}
+ labels:
+   app.kubernetes.io/component: ferdium-server 
+spec:
+ storageClassName: {{ .Values.persistence.data.storageClass }}
+ accessModes:
+   - {{ .Values.persistence.data.accessMode | quote }}
+ resources:
+   requests:
+     storage: {{ .Values.persistence.data.size | quote }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: {{ include "ferdium.fullname" . }}-reciepes-pvc
+ namespace: {{ .Release.Namespace }}
+ labels:
+   app.kubernetes.io/component: ferdium-server 
+spec:
+ storageClassName: {{ .Values.persistence.reciepes.storageClass }}
+ accessModes:
+   - {{ .Values.persistence.reciepes.accessMode | quote }}
+ resources:
+   requests:
+     storage: {{ .Values.persistence.reciepes.size | quote }}

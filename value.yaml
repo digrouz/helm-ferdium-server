@@ -1,0 +1,208 @@
+## @section Kubernetes settings
+##
+image:
+  ## @param image.registry ferdium-server image registry
+  ##
+  registry: docker.io
+  ## @param image.repository ferdium-server image repository
+  ##
+  repository: ferdium/ferdium-server
+  ##
+  ## @param image.tag ferdium-server image tag
+  ## Ref: https://hub.docker.com/r/ferdium/ferdium-server/tags
+  ##
+  tag: "latest"
+  ## @param image.pullPolicy ferdium-server image pull policy
+  ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: Always
+## @param fullnameOverride String to override the application name.
+##
+fullnameOverride: ""
+## @section Configuration
+##
+config:
+  ## @param config.nodeEnv Node environment for Ferdium server
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ## nodeEnv can be one of: development, production, test
+  ## Default: production
+  ##
+  nodeEnv: production
+  ## @param config.appURL Ferdium server application URL
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ## Default: https://app.ferdium.org
+  ##
+  appURL: "https://app.ferdium.org"
+  ## @param config.isCreationEnabled Enable or disable user creation
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ## Default: true 
+  ##
+  isCreationEnabled: true
+  ## @param config.isRegistrationEnabled Enable or disable user registration
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ## Default: true 
+  ##
+  isRegistrationEnabled: true
+  ## @param config.isDashboardEnabled Enable or disable the dashboard
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ## Default: true 
+  ##
+  isDashboardEnabled: true
+  ## @param config.connectWithFranz enable connections to the Franz server
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ## Default: true
+  ##
+  connectWithFranz: true
+  ## @param config.dataDir Ferdium server data directory
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ## Default: dataDir: /data
+  ##
+  dataDir: /data
+  ## @param config.jwtUsePem create JWT public/private keys if true
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ## Default: jwtUsePem: true
+  ##
+  jwtUsePem: true
+  ## @section Database Configuration
+  ## Ref: https://docs.ferdium.org/server/configuration/
+  ##
+  db:
+    ## @param config.db.connection Ferdium server database type
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## type can be one of: sqlite, mysql, postgres
+    ## Default: sqlite
+    ##
+    connection: sqlite
+    ## @param config.dbConnection.host Ferdium server database host
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: 127.0.0.1
+    ##
+    host: 127.0.0.1
+    ## @param config.dbConnection.port Ferdium server database port
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: 3306
+    ##
+    port: 3306
+    ## @param config.dbConnection.database Ferdium server database name
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: ferdium
+    ##
+    database: ferdium
+    ## @param config.dbConnection.user Ferdium server database user
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: root
+    ##
+    user: root
+    ## @param config.dbConnection.password Ferdium server database password
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: password
+    ##
+    password: password
+    ## @param config.dbConnection.ssl Ferdium server database SSL connection
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: false
+    ## 
+    ssl: false
+  ## @section SMTP Configuration
+  ##
+  smtp:
+    ## @param smtp.mailConnection specifying the mail sender to be used
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: smtp
+    ##
+    mailConnection: smtp
+    ## @param config.smtp.mailSender SMTP from address
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: noreply@ferdium.org
+    ##
+    mailSender: noreply@ferdium.org
+    ## @param config.smtp.host SMTP host
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: 127.0.0.1
+    ##
+    host: 127.0.0.1
+    ## @param config.smtp.port SMTP port
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: 2525
+    ##
+    port: 2525
+    ## @param config.smtp.username SMTP user
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: username
+    ##
+    username: username
+    ## @param config.smtp.password SMTP password
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: password
+    ##
+    password: password
+    ## @param config.smtp.ssl SMTP secure connection
+    ## Ref: https://docs.ferdium.org/server/configuration/
+    ## Default: false
+    ##
+    ssl: false
+## @section Persistence
+##
+persistence:
+  ## @section data persistence for db
+  ## 
+  data:
+    ## @param persistence.data.storageClass Storage class for data persistence
+    ## Default: ""
+    ## If you want to use a specific storage class, set it here.
+    ## If you want to use the default storage class, leave it empty.
+    ##
+    storageClass: ""
+    ## @param persistence.data.accessMode Access mode for data persistence
+    ## Default: ReadWriteOnce
+    ##
+    accessMode: ReadWriteOnce
+    ## @param persistence.data.size Size of data persistence
+    ## Default: 1Gi  
+    ##
+    size: 1Gi
+  ## @section reciepes persistence for custom recipes
+  ## 
+  reciepes:
+    ## @param persistence.reciepes.storageClass Storage class for recipes persistence
+    ## Default: ""
+    ## If you want to use a specific storage class, set it here.
+    ## If you want to use the default storage class, leave it empty.
+    ##
+    storageClass: ""
+    ## @param persistence.reciepes.accessMode Access mode for recipes persistence
+    ## Default: ReadWriteOnce
+    ##
+    accessMode: ReadWriteOnce
+    ## @param persistence.reciepes.size Size of recipes persistence
+    ## Default: 1Gi
+    ##
+    size: 1Gi
+## @section Ingress
+##
+ingress:
+  webui:
+    ## @param ingress.webui.enabled Enable or disable the webui ingress
+    ## Default: false
+    ##
+    enabled: false
+    ## @param ingress.webui.host Hostname for the webui ingress
+    ## Default: ferdium.example.com
+    ##
+    host: ferdium.example.com
+    ## @param ingress.webui.ingressClassName Ingress class name for the webui ingress
+    ## Default: ""
+    ##
+    ingressClassName: ""
+    ## @param ingress.webui.tls Enable or disable TLS for the webui ingress
+    ## Default: false
+    ##
+    tls: false
+    ## @param ingress.webui.annotations Annotations for the webui ingress
+    ## Default: {}
+    ##
+    annotations: {}
+  
+
+
+   
