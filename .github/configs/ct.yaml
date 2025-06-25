@@ -4,7 +4,7 @@
 remote: origin
 target-branch: main
 chart-dirs:
-  - chart
+  - .
 chart-repos: []
 validate-chart-schema: false
 validate-maintainers: true
