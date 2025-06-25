@@ -13,9 +13,9 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  {{- if .Values.ingress.webui.ingressClassName -}}
+  {{- if .Values.ingress.webui.ingressClassName }}
   ingressClassName: {{ .Values.ingress.webui.ingressClassName }}
-  {{- end -}}
+  {{- end }}
   rules:
   - host: {{ .Values.ingress.webui.host }}
     http:
@@ -27,10 +27,10 @@ spec:
             name: {{ include "ferdium.fullname" . }}-svc
             port:
               name: webui
-  {{- if .Values.ingress.webui.tls -}}
+  {{- if .Values.ingress.webui.tls }}
   tls:
     - hosts:
         - {{ .Values.ingress.webui.host }}
       secretName: {{ .Values.ingress.webui.host }}-tls
-  {{- end -}}
+  {{- end }}
 {{- end -}}
