@@ -41,12 +41,12 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "ferdium-server.fullname" . }}-secret-config
+                  name: {{ include "ferdium.fullname" . }}-secret-config
                   key: dbUser
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "ferdium-server.fullname" . }}-secret-config
+                  name: {{ include "ferdium.fullname" . }}-secret-config
                   key: dbPassword
             - name: DB_DATABASE
               value: "{{ .Values.config.db.database }}"
@@ -63,12 +63,12 @@ spec:
             - name: MAIL_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "ferdium-server.fullname" . }}-secret-config
+                  name: {{ include "ferdium.fullname" . }}-secret-config
                   key: smtpUsername
             - name: MAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "ferdium-server.fullname" . }}-secret-config
+                  name: {{ include "ferdium.fullname" . }}-secret-config
                   key: smtpPassword
             - name: MAIL_SENDER
               value: "{{ .Values.config.smtp.mailSender }}"
@@ -87,7 +87,7 @@ spec:
       volumes:
         - name: ferdium-server-data
           persistentVolumeClaim:
-            claimName: {{ include "ferdium-server.fullname" . }}-data-pvc
+            claimName: {{ include "ferdium.fullname" . }}-data-pvc
         - name: ferdium-server-reciepes
           persistentVolumeClaim:
-            claimName: {{ include "ferdium-server.fullname" . }}-reciepes-pvc
+            claimName: {{ include "ferdium.fullname" . }}-reciepes-pvc

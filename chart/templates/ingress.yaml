@@ -1,17 +1,17 @@
----
 {{- if .Values.ingress.webui.enabled -}}
-ingressapiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "ferdium.fullname" . }}-webui-ingress
   namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/component: ferdium-server
+  {{- if .Values.ingress.webui.annotations }}
   annotations:
-    {{- if .Values.ingress.webui.annotations }}
     {{- range $key, $value := .Values.ingress.webui.annotations }}
     {{ $key }}: {{ $value }}
     {{- end }}
+  {{- end }}
 spec:
   {{- if .Values.ingress.webui.ingressClassName -}}
   ingressClassName: {{ .Values.ingress.webui.ingressClassName }}

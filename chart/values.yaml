@@ -92,7 +92,7 @@ config:
     ## Ref: https://docs.ferdium.org/server/configuration/
     ## Default: root
     ##
-    user: root
+    username: root
     ## @param config.dbConnection.password Ferdium server database password
     ## Ref: https://docs.ferdium.org/server/configuration/
     ## Default: password
@@ -183,9 +183,9 @@ persistence:
 ingress:
   webui:
     ## @param ingress.webui.enabled Enable or disable the webui ingress
-    ## Default: false
+    ## Default: true
     ##
-    enabled: false
+    enabled: true
     ## @param ingress.webui.host Hostname for the webui ingress
     ## Default: ferdium.example.com
     ##
