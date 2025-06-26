@@ -161,20 +161,20 @@ persistence:
     ## Default: 1Gi  
     ##
     size: 1Gi
-  ## @section reciepes persistence for custom recipes
+  ## @section recipes persistence for custom recipes
   ## 
-  reciepes:
-    ## @param persistence.reciepes.storageClass Storage class for recipes persistence
+  recipes:
+    ## @param persistence.recipes.storageClass Storage class for recipes persistence
     ## Default: ""
     ## If you want to use a specific storage class, set it here.
     ## If you want to use the default storage class, leave it empty.
     ##
     storageClass: ""
-    ## @param persistence.reciepes.accessMode Access mode for recipes persistence
+    ## @param persistence.recipes.accessMode Access mode for recipes persistence
     ## Default: ReadWriteOnce
     ##
     accessMode: ReadWriteOnce
-    ## @param persistence.reciepes.size Size of recipes persistence
+    ## @param persistence.recipes.size Size of recipes persistence
     ## Default: 1Gi
     ##
     size: 1Gi

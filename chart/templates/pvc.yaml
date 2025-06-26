@@ -17,14 +17,14 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
- name: {{ include "ferdium.fullname" . }}-reciepes-pvc
+ name: {{ include "ferdium.fullname" . }}-recipes-pvc
  namespace: {{ .Release.Namespace }}
  labels:
    app.kubernetes.io/component: ferdium-server 
 spec:
- storageClassName: {{ .Values.persistence.reciepes.storageClass }}
+ storageClassName: {{ .Values.persistence.recipes.storageClass }}
  accessModes:
-   - {{ .Values.persistence.reciepes.accessMode | quote }}
+   - {{ .Values.persistence.recipes.accessMode | quote }}
  resources:
    requests:
-     storage: {{ .Values.persistence.reciepes.size | quote }}
+     storage: {{ .Values.persistence.recipes.size | quote }}
