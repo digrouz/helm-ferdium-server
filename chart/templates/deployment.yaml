@@ -26,7 +26,7 @@ spec:
             - name: ferdium-server-data
               mountPath: /data
             - name: ferdium-server-reciepes
-              mountPath: /app/build/recipes
+              mountPath: /app/recipes
           env:
             - name: NODE_ENV
               value: "{{ .Values.config.nodeEnv }}"
