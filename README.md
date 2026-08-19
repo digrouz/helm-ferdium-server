@@ -25,10 +25,15 @@ helm install ferdium-server myrepo/helm-ferdium-server
 
 You can customize the deployment by editing the `values.yaml` file or using `--set` flags. Common options include:
 
-- `image.repository` and `image.tag`
-- `env` for environment variables
-- `persistence.enabled` for persistent storage
-- `ingress.enabled` for ingress setup
+- `image.repository`, `image.tag`, `image.pullPolicy` for the container image
+- `config.db.*` for the database (sqlite, mysql, postgres)
+- `config.smtp.*` for SMTP mail delivery
+- `persistence.data.*` / `persistence.recipes.*` for persistent storage
+- `ingress.webui.*` for ingress setup (host, TLS, annotations)
+- `service.type` / `service.port` for the Service
+- `probes.*` to enable/disable and tune liveness/readiness/startup probes
+- `resources` for CPU/memory requests and limits
+- `podSecurityContext` / `securityContext` for pod and container security settings
 
 ## Uninstallation
 

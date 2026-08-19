@@ -1,0 +1,16 @@
+{{- if .Values.ingress.webui.enabled -}}
+Thank you for installing ferdium-server!
+
+Your Ferdium Server is now available at:
+  {{ if .Values.ingress.webui.tls }}https{{ else }}http{{ end }}://{{ .Values.ingress.webui.host }}
+{{- else -}}
+Thank you for installing ferdium-server!
+
+To access the web UI, run:
+  kubectl -n {{ .Release.Namespace }} port-forward svc/{{ include "ferdium.fullname" . }}-svc {{ .Values.service.port }}:{{ .Values.service.port }}
+
+Then open http://localhost:{{ .Values.service.port }}
+{{- end }}
+
+To use it with your Ferdium client, configure the server URL:
+  https://docs.ferdium.org/server/configuration/

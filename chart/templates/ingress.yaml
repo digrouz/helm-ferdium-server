@@ -5,6 +5,7 @@ metadata:
   name: {{ include "ferdium.fullname" . }}-webui-ingress
   namespace: {{ .Release.Namespace }}
   labels:
+    {{- include "ferdium.labels" . | nindent 4 }}
     app.kubernetes.io/component: ferdium-server
   {{- if .Values.ingress.webui.annotations }}
   annotations:
@@ -31,6 +32,6 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.webui.host }}
-      secretName: {{ .Values.ingress.webui.host }}-tls
+      secretName: {{ .Values.ingress.webui.certSecret | default (printf "%s-tls" .Values.ingress.webui.host) }}
   {{- end }}
 {{- end -}}

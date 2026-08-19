@@ -5,9 +5,12 @@ metadata:
  name: {{ include "ferdium.fullname" . }}-data-pvc
  namespace: {{ .Release.Namespace }}
  labels:
-   app.kubernetes.io/component: ferdium-server 
+   {{- include "ferdium.labels" . | nindent 3 }}
+   app.kubernetes.io/component: ferdium-server
 spec:
- storageClassName: {{ .Values.persistence.data.storageClass }}
+{{- if .Values.persistence.data.storageClass }}
+ storageClassName: {{ .Values.persistence.data.storageClass | quote }}
+{{- end }}
  accessModes:
    - {{ .Values.persistence.data.accessMode | quote }}
  resources:
@@ -20,9 +23,12 @@ metadata:
  name: {{ include "ferdium.fullname" . }}-recipes-pvc
  namespace: {{ .Release.Namespace }}
  labels:
-   app.kubernetes.io/component: ferdium-server 
+   {{- include "ferdium.labels" . | nindent 3 }}
+   app.kubernetes.io/component: ferdium-server
 spec:
- storageClassName: {{ .Values.persistence.recipes.storageClass }}
+{{- if .Values.persistence.recipes.storageClass }}
+ storageClassName: {{ .Values.persistence.recipes.storageClass | quote }}
+{{- end }}
  accessModes:
    - {{ .Values.persistence.recipes.accessMode | quote }}
  resources:

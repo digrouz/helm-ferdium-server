@@ -36,6 +36,8 @@ Common labels
 */}}
 {{- define "ferdium.labels" -}}
 helm.sh/chart: {{ include "ferdium.chart" . }}
+helm.sh/name: {{ .Release.Name }}
+helm.sh/version: {{ .Chart.Version | replace "+" "_" }}
 {{ include "ferdium.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}

@@ -1,3 +1,9 @@
 apiVersion: v2
 name: ferdium-server
-version: 0.0.1
+description: A Helm chart for deploying the Ferdium Server on Kubernetes
+type: application
+version: 0.1.0
+appVersion: "2.0.13"
+maintainers:
+  - name: DI GREGORIO Nicolas
+    email: nicolas.digregorio@gmail.com

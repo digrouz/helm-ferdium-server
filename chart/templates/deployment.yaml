@@ -5,23 +5,62 @@ metadata:
   name: {{ include "ferdium.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
+    {{- include "ferdium.labels" . | nindent 4 }}
     app.kubernetes.io/component: ferdium-server
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: {{ .Values.strategy }}
   selector:
     matchLabels:
       app.kubernetes.io/component: ferdium-server
   template:
     metadata:
       labels:
+        {{- include "ferdium.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: ferdium-server
     spec:
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: ferdium-server
           image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           ports:
-            - containerPort: 3333
+            - containerPort: {{ .Values.service.targetPort }}
+              name: webui
+          {{- if .Values.probes.enabled }}
+          startupProbe:
+            httpGet:
+              path: {{ .Values.probes.path }}
+              port: {{ .Values.service.targetPort }}
+            periodSeconds: {{ .Values.probes.periodSeconds }}
+            timeoutSeconds: {{ .Values.probes.timeoutSeconds }}
+            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.path }}
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: {{ .Values.probes.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.periodSeconds }}
+            timeoutSeconds: {{ .Values.probes.timeoutSeconds }}
+            failureThreshold: {{ .Values.probes.failureThreshold }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.probes.path }}
+              port: {{ .Values.service.targetPort }}
+            periodSeconds: {{ .Values.probes.periodSeconds }}
+            timeoutSeconds: {{ .Values.probes.timeoutSeconds }}
+            failureThreshold: {{ .Values.probes.failureThreshold }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: ferdium-server-data
               mountPath: /data
@@ -53,7 +92,7 @@ spec:
             - name: DB_SSL
               value: "{{ .Values.config.db.ssl }}"
             - name: MAIL_CONNECTION
-              value: "{{ .Values.config.smtp.connection }}"
+              value: "{{ .Values.config.smtp.mailConnection }}"
             - name: SMTP_HOST
               value: "{{ .Values.config.smtp.host }}"
             - name: SMTP_PORT

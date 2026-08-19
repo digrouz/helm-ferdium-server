@@ -5,10 +5,19 @@ metadata:
   name: {{ include "ferdium.fullname" . }}-svc
   namespace: {{ .Release.Namespace }}
   labels:
+    {{- include "ferdium.labels" . | nindent 4 }}
     app.kubernetes.io/component: ferdium-server
+  {{- if .Values.service.annotations }}
+  annotations:
+    {{- range $key, $value := .Values.service.annotations }}
+    {{ $key }}: {{ $value }}
+    {{- end }}
+  {{- end }}
 spec:
+  type: {{ .Values.service.type }}
   ports:
-  - port: 3333
+  - port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.targetPort }}
     name: webui
     protocol: TCP
   selector:
