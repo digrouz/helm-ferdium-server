@@ -22,7 +22,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: azure/setup-helm@main
+      - uses: azure/setup-helm@v5
         with:
           version: 'latest'
 
