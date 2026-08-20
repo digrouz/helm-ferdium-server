@@ -22,9 +22,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: azure/setup-helm@v4.3.0
+      - uses: azure/setup-helm@main
         with:
-          version: 'v3.17.0'
+          version: 'latest'
 
       - uses: actions/setup-python@main
         with:
