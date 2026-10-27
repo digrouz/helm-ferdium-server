@@ -11,7 +11,7 @@ image:
   ## @param image.tag ferdium-server image tag
   ## Ref: https://hub.docker.com/r/ferdium/ferdium-server/tags
   ##
-  tag: "2.0.13"
+  tag: "2.0.14"
   ## @param image.pullPolicy ferdium-server image pull policy
   ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
