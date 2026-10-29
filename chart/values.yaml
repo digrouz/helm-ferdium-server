@@ -11,7 +11,7 @@ image:
   ## @param image.tag ferdium-server image tag
   ## Ref: https://hub.docker.com/r/ferdium/ferdium-server/tags
   ##
-  tag: "2.0.13"
+  tag: "2.0.14"
   ## @param image.pullPolicy ferdium-server image pull policy
   ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
@@ -131,17 +131,17 @@ config:
   appURL: "https://app.ferdium.org"
   ## @param config.isCreationEnabled Enable or disable user creation
   ## Ref: https://docs.ferdium.org/server/configuration/
-  ## Default: true 
+  ## Default: true
   ##
   isCreationEnabled: true
   ## @param config.isRegistrationEnabled Enable or disable user registration
   ## Ref: https://docs.ferdium.org/server/configuration/
-  ## Default: true 
+  ## Default: true
   ##
   isRegistrationEnabled: true
   ## @param config.isDashboardEnabled Enable or disable the dashboard
   ## Ref: https://docs.ferdium.org/server/configuration/
-  ## Default: true 
+  ## Default: true
   ##
   isDashboardEnabled: true
   ## @param config.connectWithFranz enable connections to the Franz server
@@ -197,7 +197,7 @@ config:
     ## @param config.dbConnection.ssl Ferdium server database SSL connection
     ## Ref: https://docs.ferdium.org/server/configuration/
     ## Default: false
-    ## 
+    ##
     ssl: false
   ## @section SMTP Configuration
   ##
@@ -241,7 +241,7 @@ config:
 ##
 persistence:
   ## @section data persistence for db
-  ## 
+  ##
   data:
     ## @param persistence.data.storageClass Storage class for data persistence
     ## Default: ""
@@ -261,7 +261,7 @@ persistence:
     ##
     size: 1Gi
   ## @section recipes persistence for custom recipes
-  ## 
+  ##
   recipes:
     ## @param persistence.recipes.storageClass Storage class for recipes persistence
     ## Default: ""
@@ -309,7 +309,3 @@ ingress:
     ## Default: {}
     ##
     annotations: {}
-  
-
-
-   
