@@ -5,5 +5,5 @@ type: application
 version: 0.1.1
 appVersion: "2.0.14"
 maintainers:
-  - name: DI GREGORIO Nicolas
+  - name: digrouz
     email: digrouz+github@proton.me
